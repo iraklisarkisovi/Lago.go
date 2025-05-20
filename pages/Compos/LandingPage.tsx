@@ -1,10 +1,18 @@
 import React from 'react'
 import { InterFont } from '..';
+import { Eng, Ge } from "../api & maps/Languages/Languages";
+import { useSelector } from 'react-redux';
+import { RootState } from '../api & maps/Redux/ReduxMain';
+
+const {H1, p} = Eng.landing
+const { H1g, pg } = Ge.landing;
 
 const LandingPage = () => {
+  const lan = useSelector((state: RootState) => state.main.language);
+
   return (
     <div
-      className="flex flex-col items-center justify-center h-[650px] "
+      className="flex flex-col items-center justify-center h-[650px]"
       style={{ fontFamily: InterFont.style.fontFamily }}
     >
       <img
@@ -15,14 +23,12 @@ const LandingPage = () => {
           backgroundPosition: "center",
         }}
       />
-      <section className="parallax-bg h-screen flex flex-col items-center justify-start mt-26 text-white text-center px-4">
-        <h1 className="text-2xl font-extralight mb-2">Welcome to lagodekhi</h1>
-        <p className="text-base font-slight max-w-xl">
-          This website is created for users who
-          <br />
-          need to know more about Lagodekhi
-        </p>
-      </section>
+      {
+        <section className="parallax-bg h-screen flex flex-col items-center justify-start mt-40 text-white text-center px-4">
+          <h1 className="text-2xl font-extralight mb-2">{lan ? H1g : H1}</h1>
+          <p className="text-base font-slight max-w-xl">{lan ? pg : p}</p>
+        </section>
+      }
     </div>
   );
 }

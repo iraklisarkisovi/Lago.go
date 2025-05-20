@@ -4,6 +4,7 @@ import LandingPage from "./Compos/LandingPage";
 import Header from "./Compos/Header";
 import Sections from "./Compos/Sections";
 import MapPage from "./Compos/Map";
+import Footer from "./Compos/Footer";
  
 export const InterFont = Inter({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function Home() {
       <LandingPage />
       <Sections />
       <MapPage/>
+      <Footer/>
     </>
   );
 }

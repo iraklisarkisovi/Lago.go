@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { InterFont } from '..';
+import Link from 'next/link';
+import { Eng, Ge } from "../api & maps/Languages/Languages"
+import { useDispatch, useSelector } from 'react-redux';
+import { LanSwitcher, RootState } from '../api & maps/Redux/ReduxMain';
 
 const Header = () => {
       const [showHeader, setShowHeader] = useState(true);
+      const lan = useSelector((state: RootState) => state.main.language);
+      const dispatch = useDispatch()
 
       useEffect(() => {
         const handleScroll = () => {
@@ -30,25 +36,40 @@ const Header = () => {
       <div>
         <h1 className="text-[20px]">LagoWays</h1>
       </div>
-      <div className="flex flex-row gap-6">
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          Services
-        </a>
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          City
-        </a>
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          Parks
-        </a>
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          Markets
-        </a>
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          Hiking
-        </a>
-        <a href="#" className="hover:text-[#cccccc] transition-colors">
-          Help
-        </a>
+      <div className="flex flex-row absolute gap-6">
+        {Ge.header.map((item) => (
+          <Link
+            key={"ge"}
+            className={`hover:text-[#cccc] ${
+              lan === false && "hidden"
+            } transition-colors`}
+            href={item.toLowerCase()}
+          >
+            {item}
+          </Link>
+        ))}
+        {Eng.header.map((item) => (
+          <Link
+            key={"Eng"}
+            className={`hover:text-[#cccc] ${
+              lan && "hidden"
+            } transition-colors`}
+            href={item.toLowerCase()}
+          >
+            {item}
+          </Link>
+        ))}
+      </div>
+      <div>
+        <img
+          className="h-9 w-auto rounded-2xl cursor-pointer"
+          src={
+            lan
+              ? "https://img.icons8.com/?size=100&id=AeJiAvL1abrG&format=png&color=000000"
+              : "https://img.icons8.com/?size=100&id=15534&format=png&color=000000"
+          }
+          onClick={() => dispatch(LanSwitcher())}
+        />
       </div>
     </header>
   );
