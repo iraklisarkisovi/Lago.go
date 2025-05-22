@@ -21,7 +21,7 @@ export default function Home() {
       <Header />
       <LandingPage />
       <Sections />
-      <MapPage/>
+      {/* <MapPage/> */}
       <Footer/>
     </>
   );

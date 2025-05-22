@@ -34,12 +34,14 @@ const Header = () => {
       }}
     >
       <div>
-        <h1 className="text-[20px]">LagoWays</h1>
+        <Link href={"/"} className="text-[20px]">
+          LagoWays
+        </Link>
       </div>
       <div className="flex flex-row absolute gap-6">
         {Ge.header.map((item) => (
           <Link
-            key={"ge"}
+            key={item}
             className={`hover:text-[#cccc] ${
               lan === false && "hidden"
             } transition-colors`}
@@ -50,7 +52,7 @@ const Header = () => {
         ))}
         {Eng.header.map((item) => (
           <Link
-            key={"Eng"}
+            key={item}
             className={`hover:text-[#cccc] ${
               lan && "hidden"
             } transition-colors`}
